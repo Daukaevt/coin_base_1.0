@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CoinBase1.0</string>
+    <string name="item_name">Наименование</string>
+    <string name="item_price">Текущая цена</string>
+    <string name="item_last_update">Время последнего обновления</string>
+    <string name="item_price_change">Изменение цены (%,24h)</string>
+    <string name="item_total_volume">Объем торгов</string>
+    <string name="item_market_cap">Рыночная капитализация</string>
+</resources>
