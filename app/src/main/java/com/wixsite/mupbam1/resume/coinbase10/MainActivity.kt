@@ -1,11 +1,15 @@
 package com.wixsite.mupbam1.resume.coinbase10
 // https://www.youtube.com/watch?v=JXNJoxUBk7I
+// https://www.youtube.com/watch?v=-41e7nYnhj8
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -19,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 
 const val BASE_URL="https://api.coingecko.com"
@@ -34,6 +39,51 @@ class MainActivity : AppCompatActivity() {
         parseJSON()
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        val menuItem=menu!!.findItem(R.id.search)
+        if (menuItem!=null){
+
+            val searchView=menuItem.actionView as SearchView
+
+            searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onQueryTextChange(newText: String?): Boolean {
+
+                    if (newText!!.isNotEmpty()){
+                        coinSearchList.clear()
+                        val search = newText.toLowerCase(Locale.getDefault())
+                        coinDataList.forEach {
+                            if (it.name.toLowerCase(Locale.getDefault()).contains(search)){
+                                coinSearchList.add(it)
+                            }
+                        }
+                        binding.recyclerView.adapter!!.notifyDataSetChanged()
+                    }else{
+                        coinSearchList.clear()
+                        coinSearchList.addAll(coinDataList)
+                        binding.recyclerView.adapter!!.notifyDataSetChanged()
+
+                    }
+
+                    return true
+                }
+
+            })
+
+        }
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     private fun makeAdapter() {
@@ -133,7 +183,8 @@ class MainActivity : AppCompatActivity() {
                     if (items != null) {
 
                         coinDataList.addAll(items)
-                        coinSearch()
+                        coinSearchList.addAll(coinDataList)
+                        //coinSearch()
                         makeAdapter()
                     } else {
                         Log.e("RETROFIT_ERROR", response.code().toString())
@@ -143,21 +194,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun coinSearch() {
-        for (position in 0 until coinDataList.size){
-            val coinDataName = coinDataList[position].name
-
-            val stringVal = ""
-
-            Log.d("MyLog","stringVal-$stringVal")
-            val containsSymbol = coinDataName.findAnyOf(
-                strings = listOf(stringVal), startIndex = 0, ignoreCase = false
-            ) != null
-
-            if (containsSymbol) {
-                coinSearchList.add(coinDataList[position])
-            }
-        }
-
-    }
+//    private fun coinSearch() {
+//        for (position in 0 until coinDataList.size){
+//            val coinDataName = coinDataList[position].name
+//
+//            val stringVal = ""
+//
+//            Log.d("MyLog","stringVal-$stringVal")
+//            val containsSymbol = coinDataName.findAnyOf(
+//                strings = listOf(stringVal), startIndex = 0, ignoreCase = false
+//            ) != null
+//
+//            if (containsSymbol) {
+//                coinSearchList.add(coinDataList[position])
+//            }
+//        }
+//
+//    }
 }

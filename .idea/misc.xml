@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.109" />
         <entry key="app/src/main/res/layout/activity_coin.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_coin2.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/coin_layout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.19583333333333333" />
       </map>
     </option>
   </component>

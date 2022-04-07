@@ -6,4 +6,5 @@
     <string name="item_price_change">Изменение цены (%,24h)</string>
     <string name="item_total_volume">Объем торгов</string>
     <string name="item_market_cap">Рыночная капитализация</string>
+    <string name="search">Search</string>
 </resources>
