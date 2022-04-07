@@ -44,29 +44,29 @@
                     android:id="@+id/ivCoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+
                     app:srcCompat="@drawable/ic_launcher_foreground" />
 
                 <TextView
                     android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="TextView"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/tvItemPrice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="TextView"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     android:textStyle="bold|italic" />
             </LinearLayout>
 

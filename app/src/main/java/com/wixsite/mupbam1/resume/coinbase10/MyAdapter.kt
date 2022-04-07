@@ -44,9 +44,13 @@ class MyAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val radius = 50
-        val margin = 20
-        val coinDataImage = coinDataList?.get(position)?.image
+        val coinDataName = coinDataList?.get(position)?.name
+
+            holder.title.text= coinDataName.toString()
+
+            val radius = 50
+            val margin = 20
+            val coinDataImage = coinDataList?.get(position)?.image
             if (coinDataImage!=null){
 
                 Glide.with(cntxt)
@@ -56,11 +60,8 @@ class MyAdapter(
                     .circleCrop()
                     .into(holder.poster)
 
-            val coinDataName = coinDataList?.get(position)?.name
-            holder.title.text= coinDataName.toString()
-
-            val coinDataPrice= coinDataList?.get(position)?.current_price
-            holder.content.text= coinDataPrice?.toFloat().toString()
+                val coinDataPrice= coinDataList?.get(position)?.current_price
+                holder.content.text= coinDataPrice?.toFloat().toString()
 
                 val coinDataLastUpdated=coinDataList?.get(position)?.last_updated
                 val coinDataPriceChange=coinDataList?.get(position)?.price_change_percentage_24h
@@ -77,7 +78,10 @@ class MyAdapter(
                         ,coinDataTotalVolume.toString()
                         ,coinDataMarketCap.toString())
                 }
-        }
+            }
+
+
+
     }
 
     override fun getItemCount(): Int {

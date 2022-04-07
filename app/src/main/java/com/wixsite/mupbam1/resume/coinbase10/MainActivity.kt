@@ -2,15 +2,17 @@ package com.wixsite.mupbam1.resume.coinbase10
 // https://www.youtube.com/watch?v=JXNJoxUBk7I
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import com.bumptech.glide.Glide
 import com.wixsite.mupbam1.resume.coinbase10.databinding.ActivityMainBinding
+import com.wixsite.mupbam1.resume.coinbase10.searchData.Coin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,16 +20,19 @@ import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 const val BASE_URL="https://api.coingecko.com"
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
    private val coinDataList: MutableList<CoinDataStructureItem> = mutableListOf()
+   private val coinSearchList: MutableList<CoinDataStructureItem> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         parseJSON()
+
 
     }
 
@@ -35,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // Set the LayoutManager that this RecyclerView will use.
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         // Adapter class is initialized and list is passed in the param.
-        val itemAdapter = MyAdapter(this, coinDataList, object : onItemClickListner{
+        val itemAdapter = MyAdapter(this, coinSearchList, object : onItemClickListner{
             override fun onClicked1(
                 coinDataImage: String,
                 coinDataName: String,
@@ -46,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                 coinDataMarketCap: String
             ) {
                 with(binding){
+
                     includeID.llCoinItem.visibility=View.VISIBLE
                     Glide.with(this@MainActivity)
                         .load(coinDataImage)
@@ -59,13 +65,22 @@ class MainActivity : AppCompatActivity() {
                     includeID.tvPriceChangePercentage24h.text=coinDataPriceChange
                     includeID.tvTotalVolume.text=coinDataTotalVolume
                     includeID.tvMarketCap.text=coinDataMarketCap
+                    includeID.llCoinItem.setOnClickListener {
+                        includeID.llCoinItem.visibility=View.GONE
+                       // recyclerView.getLayoutManager()?.scrollToPosition(10)
 
+                        val smoothScroller: SmoothScroller =
+                            object : LinearSmoothScroller(this@MainActivity) {
+                                override fun getVerticalSnapPreference(): Int {
+                                    return SNAP_TO_START
+                                }
+                            }
+                        smoothScroller.setTargetPosition(55)
+                        recyclerView.layoutManager?.startSmoothScroll(smoothScroller)
 
+                    }
                 }
-
-
             }
-
         })
         // adapter instance is set to the recyclerview to inflate the items.
         binding.recyclerView.adapter = itemAdapter
@@ -81,24 +96,68 @@ class MainActivity : AppCompatActivity() {
 
         // Create Service
         val service = retrofit.create(retrofitApi::class.java)
+        CoroutineScope(Dispatchers.IO).launch {
+
+            val responseSearch = service.getSearch()
+
+
+            withContext(Dispatchers.Main) {
+                val itemsSearch = responseSearch.body()
+
+                if (responseSearch.isSuccessful) {
+                    val itemsSearch = responseSearch.body()?.coins
+
+                    if (itemsSearch != null) {
+                        //coinList.addAll(itemsSearch)
+                        Log.d("MyLog", "itemsSearch-${itemsSearch.size}")
+                        //makeAdapter()
+                    }
+                } else {
+                    Log.d("MyLog", responseSearch.code().toString())
+                }
+            }
+        }
+
 
         CoroutineScope(Dispatchers.IO).launch {
 
             // Do the GET request and get response
             val response = service.getData()
 
+
+
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val items = response.body()
 
-                    if (items!= null) {
+                    if (items != null) {
+
                         coinDataList.addAll(items)
+                        coinSearch()
                         makeAdapter()
+                    } else {
+                        Log.e("RETROFIT_ERROR", response.code().toString())
                     }
-                } else {
-                    Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
         }
+    }
+
+    private fun coinSearch() {
+        for (position in 0 until coinDataList.size){
+            val coinDataName = coinDataList[position].name
+
+            val stringVal = ""
+
+            Log.d("MyLog","stringVal-$stringVal")
+            val containsSymbol = coinDataName.findAnyOf(
+                strings = listOf(stringVal), startIndex = 0, ignoreCase = false
+            ) != null
+
+            if (containsSymbol) {
+                coinSearchList.add(coinDataList[position])
+            }
+        }
+
     }
 }

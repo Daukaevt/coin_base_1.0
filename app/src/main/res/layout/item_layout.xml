@@ -41,25 +41,26 @@
         <TextView
             android:id="@+id/tvID"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="2dp"
             android:text="TextView"
             android:textColor="@color/KingBlue"
-            android:textSize="26sp"
+            android:textSize="24dp"
             android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="2dp"
             android:text="TextView"
             android:textColor="@color/darkGreen"
-            android:textSize="22sp"
+            android:textSize="22dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvID" />
 
