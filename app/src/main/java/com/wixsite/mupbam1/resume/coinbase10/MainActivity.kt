@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.get
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         if (menuItem!=null){
 
             val searchView=menuItem.actionView as SearchView
+            val editText=searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            editText.hint="Search..."
 
             searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
