@@ -55,6 +55,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textColor="@color/KingBlue"
                     android:textSize="20dp"
                     android:textStyle="bold|italic" />
 
@@ -66,6 +67,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textColor="@color/KingBlue"
                     android:textSize="20dp"
                     android:textStyle="bold|italic" />
             </LinearLayout>
@@ -86,28 +88,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:text="@string/item_last_update" />
+                        android:text="@string/item_last_update"
+                        android:textColor="@color/KingBlue" />
 
                     <TextView
                         android:id="@+id/textView12"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:text="@string/item_price_change" />
+                        android:text="@string/item_price_change"
+                        android:textColor="@color/KingBlue" />
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:text="@string/item_total_volume" />
+                        android:text="@string/item_total_volume"
+                        android:textColor="@color/KingBlue" />
 
                     <TextView
                         android:id="@+id/textView14"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:text="@string/item_market_cap" />
+                        android:text="@string/item_market_cap"
+                        android:textColor="@color/KingBlue" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -123,7 +129,9 @@
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
-                        android:textSize="16sp" />
+                        android:textColor="@color/KingBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
 
@@ -132,7 +140,9 @@
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
-                        android:textSize="16sp" />
+                        android:textColor="@color/KingBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
 
@@ -141,7 +151,9 @@
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
-                        android:textSize="16sp" />
+                        android:textColor="@color/KingBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
 
@@ -150,7 +162,9 @@
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
-                        android:textSize="16sp" />
+                        android:textColor="@color/KingBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 

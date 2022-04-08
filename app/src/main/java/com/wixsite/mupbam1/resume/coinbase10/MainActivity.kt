@@ -1,4 +1,5 @@
 package com.wixsite.mupbam1.resume.coinbase10
+
 // https://www.youtube.com/watch?v=JXNJoxUBk7I
 // https://www.youtube.com/watch?v=-41e7nYnhj8
 
@@ -72,16 +73,11 @@ class MainActivity : AppCompatActivity() {
                         coinSearchList.clear()
                         coinSearchList.addAll(coinDataList)
                         binding.recyclerView.adapter!!.notifyDataSetChanged()
-
                     }
-
                     return true
                 }
-
             })
-
         }
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -147,7 +143,7 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        // Create Service
+        // Create Service for Global Search from API        "/api/v3/search?query=bitcoin" gonna be realised
         val service = retrofit.create(retrofitApi::class.java)
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -170,6 +166,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        //Create Service     API       "/api/v3/coins/markets?vs_currency=usd"
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -196,22 +194,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun coinSearch() {
-//        for (position in 0 until coinDataList.size){
-//            val coinDataName = coinDataList[position].name
-//
-//            val stringVal = ""
-//
-//            Log.d("MyLog","stringVal-$stringVal")
-//            val containsSymbol = coinDataName.findAnyOf(
-//                strings = listOf(stringVal), startIndex = 0, ignoreCase = false
-//            ) != null
-//
-//            if (containsSymbol) {
-//                coinSearchList.add(coinDataList[position])
-//            }
-//        }
-//
-//    }
 }

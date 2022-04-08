@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.109" />
+        <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.109" />
         <entry key="app/src/main/res/layout/activity_coin.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_coin2.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
