@@ -4,12 +4,15 @@ package com.wixsite.mupbam1.resume.coinbase10
 // https://www.youtube.com/watch?v=-41e7nYnhj8
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.get
@@ -38,10 +41,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+    var network = isNetworkAvailable(this)
+    if (network==false){
+
+        Toast.makeText(this, getString(R.string.noNetwork), Toast.LENGTH_SHORT).show()
+    }else{
         parseJSON()
-
-
     }
+}
+
+fun isNetworkAvailable(context: Context): Boolean {
+    // Network chek
+    val connectivityManager = context.getApplicationContext()
+        .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetworkInfo = connectivityManager.activeNetworkInfo
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected
+}
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

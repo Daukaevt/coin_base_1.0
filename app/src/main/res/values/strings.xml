@@ -7,4 +7,5 @@
     <string name="item_total_volume">Объем торгов</string>
     <string name="item_market_cap">Рыночная капитализация</string>
     <string name="search">Search</string>
+    <string name="noNetwork">Out of network</string>
 </resources>

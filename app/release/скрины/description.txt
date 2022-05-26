@@ -1,0 +1,4 @@
+The application informs the user about the current prices in US dollars for cryptocurrencies from the top 100 by capitalization on the CoinBase crypto exchange. All changes in exchange rates occur in real time. The information source is an open resource of CoinBase. The plans are to add charts and operational news on the crypt.
+
+
+Приложение информирует пользователя об актуальных ценах в долларах США на криптовалюты из топ-100 по капитализации на криптобирже CoinBase. Все изменения о курсах валют происходят в режиме реального времени. Информационный источник - открытый ресурс КоинБасе. В планах - добваить графики и оперативные новости по крипте.
