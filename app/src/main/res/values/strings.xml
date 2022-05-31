@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CoinInfo</string>
+    <string name="app_name">quotes from coinbase.com</string>
     <string name="item_name">Наименование</string>
     <string name="item_price">Текущая цена</string>
     <string name="item_last_update">Время последнего обновления</string>
