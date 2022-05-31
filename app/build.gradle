@@ -32,6 +32,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+    namespace 'com.wixsite.mupbam1.resume.coinbase10'
 }
 
 dependencies {
